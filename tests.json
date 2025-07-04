@@ -1,0 +1,24 @@
+{
+    "project": "Sector Strings",
+    "tests": {
+        "test_new_sstring": [
+            "src/sstrings.c",
+            "src/tests/new_sstring.c"
+        ],
+        "test_trim_left": [
+            "src/sstrings.c",
+            "src/tests/trim_left.c"
+        ],
+        "test_trim_right": [
+            "src/sstrings.c",
+            "src/tests/trim_right.c"
+        ],
+        "test_trim": [
+            "src/sstrings.c",
+            "src/tests/trim.c"
+        ]
+    },
+    "test_flags": [
+        "-Wall"
+    ]
+}
