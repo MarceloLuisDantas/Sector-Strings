@@ -1,0 +1,37 @@
+{
+    "src/sstrings.c": [
+        1751595086.3414676,
+        [
+            "-Wall"
+        ],
+        "ok"
+    ],
+    "src/tests/new_sstring.c": [
+        1751593111.3549933,
+        [
+            "-Wall"
+        ],
+        "ok"
+    ],
+    "src/tests/trim_left.c": [
+        1751595573.4643846,
+        [
+            "-Wall"
+        ],
+        "ok"
+    ],
+    "src/tests/trim_right.c": [
+        1751595659.6339633,
+        [
+            "-Wall"
+        ],
+        "ok"
+    ],
+    "src/tests/trim.c": [
+        1751595567.6852787,
+        [
+            "-Wall"
+        ],
+        "ok"
+    ]
+}
