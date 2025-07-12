@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <string.h>
-
+#include <stdio.h>
 /*
  *      Sector Seven - Strings
  *      This is a library created with my needs in mind,
@@ -100,11 +100,10 @@ char *SStringToCString(const SString* str) {
 
     for (size_t i = 0; i < str->len; i++)
         cstr[i] = str->string[i];
-    cstr[str->len] = '\n';
+    cstr[str->len] = '\0';
 
     return cstr;
 }
-
 
 // Removes all extra spaces at the beginning the string
 // MAY RETURN NULL IF
@@ -208,28 +207,34 @@ SStringArray *split(const SString *str, const char separator) {
 // MAY RETURN NULL
 SString *concat(const SString *str1, const SString *str2, const char *separator) {
     size_t new_len = str1->len + str2->len;
-    if (separator != "") 
-        new_len += 1;
+    if (separator != NULL && separator[0] != '\0') 
+        new_len += strlen(separator);
+    new_len += 1; // '\0'
+
+    char *cstr = malloc(sizeof(char) * new_len);
     
-    SString *ns = NewSString(new_len);
+    size_t count = 0;
+    // Copying str1 to cstr
+    memcpy(cstr + count, str1->string, str1->len);
+    count += str1->len;
+
+    // Adiciona o separator (se não for vazio)
+    if (separator != NULL && separator[0] != '\0') {
+        size_t sep_len = strlen(separator);
+        memcpy(cstr + count, separator, sep_len);
+        count += sep_len;
+    }
+
+    // Copia str2
+    memcpy(cstr + count, str2->string, str2->len);
+    count += str2->len;
+
+    cstr[count] = '\0';
+
+    SString *ns = CStringToSSTring(cstr);
     if (ns == NULL)
         return NULL;
-        
-    size_t count = 0;
-    for (size_t i = 0; i < str1->len; i++) {
-        ns->string[count] = str1->string[i];
-        count += 1;
-    }
 
-    if (separator != "") {
-        ns->string[count] = separator;
-        count += 1;
-    }
-
-    for (size_t i = 0; i < str2->len; i++) {
-        ns->string[count] = str2->string[i];
-        count += 1;
-    }
-
+    free(cstr);
     return ns;
 }

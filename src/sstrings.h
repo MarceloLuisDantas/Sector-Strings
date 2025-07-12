@@ -4,8 +4,9 @@
 #include <stdlib.h>
 
 typedef struct SString {
-    char *string;
-    size_t   len; 
+    char    *string;
+    size_t capacity; 
+    size_t      len; 
 } SString;
 
 // Allocs a new SString with the needed size
