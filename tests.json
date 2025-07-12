@@ -24,6 +24,10 @@
         "test_concat": [
             "src/sstrings.c",
             "src/tests/concat.c"
+        ],
+        "test_slice": [
+            "src/sstrings.c",
+            "src/tests/slice.c"
         ]
     },
     "test_flags": [

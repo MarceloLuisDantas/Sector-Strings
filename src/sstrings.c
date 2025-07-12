@@ -20,8 +20,9 @@
  *          } SString;
  *    
  *          typedef struct SStringArray {
- *              SString *strings;
- *              size_t       len;
+ *              SString **strings;
+                size_t   capacity; 
+ *              size_t        len;
  *          } SStringArray;      
  * 
  *      Functions:
@@ -31,6 +32,8 @@
  *          SString *trim_left(SString *str)
  *          SString *trim_right(SString *str)
  *          SString *trim(const SString *str)
+ *          SString *slice(const SString *str, size_t start, size_t end)
+ *          SString *concat(const SString *str1, const SString *str2, const char *separator)
  * 
  */
 
@@ -41,24 +44,22 @@ typedef struct SString {
 } SString;
 
 typedef struct SStringArray {
-    SString *strings;
-    size_t  capacity; 
-    size_t       len;
+    SString **strings;
+    size_t   capacity; 
+    size_t        len;
 } SStringArray;
 
 // Allocs a new SString with the needed size
 // MAY RETURN NULL
 SString *NewSString(size_t size) {
     SString *ns = malloc(sizeof(SString));
-    if (ns == NULL)
-        return NULL;
+    if (ns == NULL) return NULL;
 
     ns->string = malloc(sizeof(char) * size);
-    if (ns->string == NULL)
-        return NULL;
+    if (ns->string == NULL) return NULL;
 
-    ns->len = 0;
     ns->capacity = size;
+    ns->len = 0;
     return ns;
 }
 
@@ -66,12 +67,10 @@ SString *NewSString(size_t size) {
 // MAY RETURN NULL
 SStringArray *NewSStringArray(size_t size) {
     SStringArray *array = malloc(sizeof(SStringArray));
-    if (array == NULL)
-        return NULL;
+    if (array == NULL) return NULL;
 
     array->strings = malloc(sizeof(SString) * size);
-    if (array->strings == NULL)
-        return NULL;
+    if (array->strings == NULL) return NULL;
 
     array->capacity = size;
     array->len = 0;
@@ -83,8 +82,7 @@ SStringArray *NewSStringArray(size_t size) {
 SString *CStringToSSTring(const char* str) {
     size_t len = strlen(str);
     SString *ns = NewSString(len);
-    if (ns == NULL)
-        return NULL;
+    if (ns == NULL) return NULL;
 
     memcpy(ns->string, str, len);
     ns->len = len;
@@ -95,8 +93,7 @@ SString *CStringToSSTring(const char* str) {
 // MAY RETURN NULL
 char *SStringToCString(const SString* str) {
     char *cstr = malloc(sizeof(char) * (str->len + 1)); // +1 to the \0
-    if (cstr == NULL)
-        return NULL;
+    if (cstr == NULL) return NULL;
 
     for (size_t i = 0; i < str->len; i++)
         cstr[i] = str->string[i];
@@ -119,12 +116,10 @@ SString *trim_left(const SString *str) {
         }
     }
 
-    if (total_spaces == str->len)
-        return NULL;
+    if (total_spaces == str->len) return NULL;
 
     SString *ns = NewSString(str->len - total_spaces);
-    if (ns == NULL)
-        return NULL;
+    if (ns == NULL) return NULL;
 
     ns->len = ns->capacity;
     for (int i = 0; i < ns->capacity; i++) 
@@ -147,12 +142,10 @@ SString *trim_right(const SString *str) {
         }
     }
 
-    if (total_spaces == str->len)
-        return NULL;
+    if (total_spaces == str->len) return NULL;
 
     SString *ns = NewSString(str->len - total_spaces);
-    if (ns == NULL)
-        return NULL;
+    if (ns == NULL) return NULL;
 
     ns->len = ns->capacity;
     for (int i = 0; i < ns->capacity; i++) 
@@ -168,39 +161,13 @@ SString *trim_right(const SString *str) {
 //      If the trim_right returns NULL
 SString *trim(const SString *str) {
     SString *trimed_left = trim_left(str); // temp, should be free at end of function
-    if (trimed_left == NULL)
-        return NULL;
+    if (trimed_left == NULL) return NULL;
     
     SString *full_trimmed = trim_right(trimed_left);
-    if (full_trimmed == NULL)
-        return NULL;
+    if (full_trimmed == NULL) return NULL;
 
     free(trimed_left);
     return full_trimmed;
-}
-
-// Splits a SString at the separator
-// MAY RETURN NULL
-SStringArray *split(const SString *str, const char separator) {
-    size_t how_many_split_points = 0;
-    for (size_t i = 0; i < str->len; i++)
-        if (str->string[i] == separator)
-            how_many_split_points += 1;
-
-    size_t *split_points = malloc(sizeof(size_t) * how_many_split_points);
-    size_t count = 0;
-    for (size_t i = 0; i < str->len; i++) {
-        if (str->string[i] == separator) {
-            split_points[count] = i;
-            count += 1;
-        }
-    }
-
-    SStringArray *splited = NULL;
-
-
-    free(split_points);
-    return NULL;
 }
 
 // Concats 2 SStrings with the separator in between
@@ -218,7 +185,7 @@ SString *concat(const SString *str1, const SString *str2, const char *separator)
     memcpy(cstr + count, str1->string, str1->len);
     count += str1->len;
 
-    // Adiciona o separator (se não for vazio)
+    // Copying the separator
     if (separator != NULL && separator[0] != '\0') {
         size_t sep_len = strlen(separator);
         memcpy(cstr + count, separator, sep_len);
@@ -232,9 +199,103 @@ SString *concat(const SString *str1, const SString *str2, const char *separator)
     cstr[count] = '\0';
 
     SString *ns = CStringToSSTring(cstr);
-    if (ns == NULL)
-        return NULL;
+    if (ns == NULL) return NULL;
 
     free(cstr);
     return ns;
+}
+
+// Returns a SString with a slice of another SString.
+// The slice starts ate the start idnex, and copys (including) until the end idnex
+// str = "foo bar", start = 2, end = 5
+// result = "o ba"
+// MAY RETURN NULL
+SString *slice(const SString *str, size_t start, size_t end) {
+    if (str->len <= 0) return NULL;
+    if (start > end) return NULL;
+    if (start < 0 || end < 0) return NULL;
+    if (start >= str->len || end >= str->len) return NULL;
+
+    size_t cstr_len = end - start + 1;
+    char *cstr = malloc(sizeof(char) * (cstr_len + 1 /* \0 */));
+    if (cstr == NULL) return NULL;
+
+    memcpy(cstr, str->string + start, cstr_len);
+    cstr[cstr_len] = '\0';
+    SString *sslice = CStringToSSTring(cstr);
+    free(cstr);
+
+    return sslice;
+}
+
+// Splits a SString at the separator
+// MAY RETURN NULL
+SStringArray *split(const SString *str, const char separator) {
+    if (str->len <= 0)
+        return NULL;
+
+    size_t how_many_split_points = 0;
+    for (size_t i = 0; i < str->len; i++)
+        if (str->string[i] == separator)
+            how_many_split_points += 1;
+    SStringArray *splites = NewSStringArray(how_many_split_points + 1);
+    if (splites == NULL) return NULL;
+
+    size_t *split_points = malloc(sizeof(size_t) * how_many_split_points);
+    if (split_points == NULL) return NULL;
+
+    size_t count = 0;
+    for (size_t i = 0; i < str->len; i++) {
+        if (str->string[i] == separator) {
+            split_points[count] = i;
+            count += 1;
+        }
+    }
+
+    int start = 0;
+    int end = 0;
+    for (int i = 0; i < how_many_split_points; i++) {
+        end = split_points[i];
+    }
+
+    free(split_points);
+    return NULL;
+}
+
+
+SString *join(const SStringArray *strs, const char *separator) {
+    if (strs->len <= 0) return NULL;
+    
+    size_t sep_len = 0;
+    if (separator != NULL && separator[0] != '\0') 
+        sep_len += strlen(separator);
+    int total_seps = strs->len - 1;
+    
+    size_t new_len = 0;
+    for (int i = 0; i < strs->len; i++)
+        new_len += strs->strings[i]->len;
+    
+    new_len += sep_len * total_seps;
+    new_len += 1; // '\0'
+
+    char *cstr = malloc(sizeof(char) * new_len);
+    if (cstr == NULL) return NULL;
+
+    size_t count = 0;
+    for (int i = 0; i < strs->len; i++) {
+        memcpy(cstr + count, strs->strings[i]->string, strs->strings[i]->len);
+        count += strs->strings[i]->len;
+
+        if (sep_len > 0 && total_seps > 0) {
+            memcpy(cstr + count, separator, sep_len);
+            count += sep_len;
+            total_seps -= 1;
+        }
+    }
+    cstr[count] = '\0';
+
+    SString *joined = CStringToSSTring(cstr);
+    free(cstr);
+
+    return joined;
 }

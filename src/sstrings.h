@@ -9,6 +9,12 @@ typedef struct SString {
     size_t      len; 
 } SString;
 
+typedef struct SStringArray {
+    SString **strings;
+    size_t   capacity; 
+    size_t        len;
+} SStringArray;
+
 // Allocs a new SString with the needed size
 // MAY RETURN NULL
 SString *NewSString(size_t size);
@@ -39,6 +45,13 @@ SString *trim_right(SString *str);
 //      If the trim_left returns NULL
 //      If the trim_right returns NULL
 SString *trim(const SString *str);
+
+// Returns a SString with a slice of another SString.
+// The slice starts ate the start idnex, and copys (including) until the end idnex
+// str = "foo bar", start = 2, end = 5
+// result = "o ba"
+// MAY RETURN NULL
+SString *slice(const SString *str, size_t start, size_t end);
 
 // Concats 2 SStrings with the separator in between
 // MAY RETURN NULL
