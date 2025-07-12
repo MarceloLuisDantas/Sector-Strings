@@ -1,8 +1,6 @@
 {
     "project": "SectorStrings",
     "type": "lib",
-    "include_folder": "include",
-    "lib_folder": "lib",
     "sources": [
     ],
     "comp_flags": [

@@ -16,6 +16,10 @@ SString *NewSString(size_t size);
 // MAY RETURN NULL
 SString *CStringToSSTring(const char* string);
 
+// Convertes a SString to a CString (list of charhs ended with \0)
+// MAY RETURN NULL
+char *SStringToCString(const SString* str);
+
 // Removes all extra spaces at the beginning the string
 // MAY RETURN NULL
 //      The string is only spaces (for some reason)
@@ -34,5 +38,9 @@ SString *trim_right(SString *str);
 //      If the trim_left returns NULL
 //      If the trim_right returns NULL
 SString *trim(const SString *str);
+
+// Concats 2 SStrings with the separator in between
+// MAY RETURN NULL
+SString *concat(const SString *str1, const SString *str2, const char *separator);
 
 #endif

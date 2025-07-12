@@ -16,6 +16,14 @@
         "test_trim": [
             "src/sstrings.c",
             "src/tests/trim.c"
+        ],
+        "test_sstring_to_cstring": [
+            "src/sstrings.c",
+            "src/tests/sstring_to_cstring.c"
+        ],
+        "test_concat": [
+            "src/sstrings.c",
+            "src/tests/concat.c"
         ]
     },
     "test_flags": [
