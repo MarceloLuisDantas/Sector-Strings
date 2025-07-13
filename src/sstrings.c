@@ -206,17 +206,17 @@ SString *concat(const SString *str1, const SString *str2, const char *separator)
 }
 
 // Returns a SString with a slice of another SString.
-// The slice starts ate the start idnex, and copys (including) until the end idnex
+// The slice starts ate the start idnex, and copys until the end index (excluded)
 // str = "foo bar", start = 2, end = 5
-// result = "o ba"
+// result = "o b"
 // MAY RETURN NULL
 SString *slice(const SString *str, size_t start, size_t end) {
     if (str->len <= 0) return NULL;
-    if (start > end) return NULL;
-    if (start < 0 || end < 0) return NULL;
-    if (start >= str->len || end >= str->len) return NULL;
+    if (start > end || start < 0) return NULL;
+    if (end > str->len) return NULL;
+    if (start >= str->len) return NULL;
 
-    size_t cstr_len = end - start + 1;
+    size_t cstr_len = end - start;
     char *cstr = malloc(sizeof(char) * (cstr_len + 1 /* \0 */));
     if (cstr == NULL) return NULL;
 
@@ -224,7 +224,7 @@ SString *slice(const SString *str, size_t start, size_t end) {
     cstr[cstr_len] = '\0';
     SString *sslice = CStringToSSTring(cstr);
     free(cstr);
-
+    
     return sslice;
 }
 
