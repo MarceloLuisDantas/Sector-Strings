@@ -57,4 +57,11 @@ SString *slice(const SString *str, size_t start, size_t end);
 // MAY RETURN NULL
 SString *concat(const SString *str1, const SString *str2, const char *separator);
 
+// Splits a SString at the separator, separator is a single char
+// MAY RETURN NULL IF
+//      str.len <= 0
+//      NewSStringArray returns null (malloc = null)
+//      slice returns null 
+SStringArray *split(const SString *str, const char separator);
+
 #endif

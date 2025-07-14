@@ -77,6 +77,17 @@ SStringArray *NewSStringArray(size_t size) {
     return array;
 }
 
+// Pushs a new SString into a SStringArray
+// returns -1 if the array is full
+int push_sstring(SStringArray *self, SString *str) {
+    if (self->len == self->capacity)
+        return -1;
+
+    self->strings[self->len] = str;
+    self->len += 1;    
+    return 1;
+}
+
 // Creates a SString from a C-String (list of chars ended with \0)
 // MAY RETURN NULL
 SString *CStringToSSTring(const char* str) {
@@ -214,9 +225,15 @@ SString *slice(const SString *str, size_t start, size_t end) {
     if (str->len <= 0) return NULL;
     if (start > end || start < 0) return NULL;
     if (end > str->len) return NULL;
-    if (start >= str->len) return NULL;
+    if (start >= str->len && start != end) return NULL;
+    
+    // case to split, when the string is ex: "aaaaa", and the separator is "a"
+    if (start >= str->len && start == end) return CStringToSSTring("");
 
     size_t cstr_len = end - start;
+    if (cstr_len == 0)
+        return CStringToSSTring("");
+    
     char *cstr = malloc(sizeof(char) * (cstr_len + 1 /* \0 */));
     if (cstr == NULL) return NULL;
 
@@ -228,38 +245,42 @@ SString *slice(const SString *str, size_t start, size_t end) {
     return sslice;
 }
 
-// Splits a SString at the separator
-// MAY RETURN NULL
+// Splits a SString at the separator, separator is a single char
+// MAY RETURN NULL IF
+//      str.len <= 0
+//      NewSStringArray returns null (malloc = null)
+//      slice returns null 
 SStringArray *split(const SString *str, const char separator) {
-    if (str->len <= 0)
-        return NULL;
+    if (str->len <= 0) return NULL;
 
-    size_t how_many_split_points = 0;
+    int total_split_points = 0;
     for (size_t i = 0; i < str->len; i++)
         if (str->string[i] == separator)
-            how_many_split_points += 1;
-    SStringArray *splites = NewSStringArray(how_many_split_points + 1);
-    if (splites == NULL) return NULL;
+            total_split_points += 1;
 
-    size_t *split_points = malloc(sizeof(size_t) * how_many_split_points);
-    if (split_points == NULL) return NULL;
+    SStringArray *array = NewSStringArray(total_split_points + 1);
+    if (array == NULL) return NULL;
 
-    size_t count = 0;
+    if (total_split_points == 0) {
+        push_sstring(array, str);
+        return array;
+    }
+        
+    size_t start = 0;
     for (size_t i = 0; i < str->len; i++) {
         if (str->string[i] == separator) {
-            split_points[count] = i;
-            count += 1;
+            SString *sliced = slice(str, start, i);
+            if (sliced == NULL) return NULL;
+            push_sstring(array, sliced);
+            start = i + 1;
         }
     }
 
-    int start = 0;
-    int end = 0;
-    for (int i = 0; i < how_many_split_points; i++) {
-        end = split_points[i];
-    }
+    SString *last_slice = slice(str, start, str->len);
+    if (last_slice == NULL) return NULL;
+    push_sstring(array, last_slice);
 
-    free(split_points);
-    return NULL;
+    return array;
 }
 
 

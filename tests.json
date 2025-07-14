@@ -28,9 +28,13 @@
         "test_slice": [
             "src/sstrings.c",
             "src/tests/slice.c"
+        ],
+        "test_split": [
+            "src/sstrings.c",
+            "src/tests/split.c"
         ]
     },
     "test_flags": [
-        "-Wall"
+        "-Wall", "-g"
     ]
 }
