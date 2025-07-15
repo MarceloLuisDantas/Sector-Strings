@@ -4,6 +4,14 @@
 #include "../sstrings.h"
 
 int main() {
+    SString *str0 = CStringToSSTring("camel");
+    size_t total0 = count(str0, "dromedario");
+    if (total0 != -1) {
+        printf("Not Ok, total should -1, but got %d\n", total0);
+        return 0;
+    }
+    printf("Total Ok, -1.\n");
+
     SString *str1 = CStringToSSTring("dromedario");
     size_t total1 = count(str1, "eda");
     if (total1 != 1) {
@@ -35,6 +43,22 @@ int main() {
         return 0;
     }
     printf("Total Ok, 0.\n");
+
+    SString *str5 = CStringToSSTring("aaaaabbbaa");
+    size_t total5 = count(str5, "a");
+    if (total5 != 7) {
+        printf("Not Ok, total should 7, but got %d\n", total5);
+        return 0;
+    }
+    printf("Total Ok, 7.\n");
+
+    SString *str6 = CStringToSSTring("aaaaabbbaac");
+    size_t total6 = count(str6, "c");
+    if (total6 != 1) {
+        printf("Not Ok, total should 1, but got %d\n", total6);
+        return 0;
+    }
+    printf("Total Ok, 1.\n");
 
     return 1;
 }

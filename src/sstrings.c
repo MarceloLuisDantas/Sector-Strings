@@ -345,35 +345,55 @@ size_t count(SString *str, const char *value) {
     }
     
     int total = 0;
-    char *window = str->string;
     for (int i = 0; i <= (str->len - strlen(value)); i++) {
-        for (int j = 0; j < 3; j++) {
-            if (window[i + j] != value[j])
+        for (int j = 0; j < strlen(value); j++) {
+            if (str->string[i + j] != value[j])
                 break;
 
-            if (j == 2) total += 1;
+            if (j == strlen(value) - 1) total += 1;
         }
     }
     
 	return total;
 }			
 
-// // Searches the string for a specified value and returns the position of where it was found
-// size_t index(SString *str) {
-// 	return NULL;
-// }			
+// Searches the string for a specified value and returns the position of where it was found
+// Returns -1 if the value doesn't exist
+size_t indexof(SString *str, const char *value) {
+	if (str->len < strlen(value))
+        return -1;
+
+    // The value is equals to the string
+    if (str->len == strlen(value)) {
+        if (strcmp(SStringToCString(str), value) == 0)
+            return 1;
+        return -1;
+    }
+    
+    for (int i = 0; i <= (str->len - strlen(value)); i++) {
+        for (int j = 0; j < strlen(value); j++) {
+            if (str->string[i + j] != value[j]) 
+                break;
+            
+            if (j == strlen(value) - 1) 
+                return i;
+        }
+    }
+    
+	return -1;
+}			
 
 // // Returns a string where a specified value is replaced with a specified value
-// SString *replace(SString *str) {
+// SString *replace(SString *str, const char *old, const char *new) {
 // 	return NULL;
 // }		
 
 // // Fills the string with a specified number of the specified value at the start
-// SString *left_pad(SString *str) {
+// SString *left_pad(SString *str, size_t total, const char *value) {
 // 	return NULL;
 // } 		
 
 // // Fills the string with a specified number of the specified value at the end     
-// SString *right_pad(SString *str) {
+// SString *right_pad(SString *str, size_t total, const char *value) {
 // 	return NULL;
 // }		

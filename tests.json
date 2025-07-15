@@ -40,6 +40,10 @@
         "test_count": [
             "src/sstrings.c",
             "src/tests/count.c"
+        ],
+        "test_index": [
+            "src/sstrings.c",
+            "src/tests/index.c"
         ]
     },
     "test_flags": [

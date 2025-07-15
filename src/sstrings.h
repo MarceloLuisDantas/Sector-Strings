@@ -74,4 +74,8 @@ SString *join(const SStringArray *strs, const char *separator);
 // Returns -1 if the value doesn't exist
 size_t count(SString *str, const char *value);
 
+// Searches the string for a specified value and returns the position of where it was found
+// Returns -1 if the value doesn't exist
+size_t indexof(SString *str, const char *value);
+
 #endif
