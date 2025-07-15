@@ -330,3 +330,50 @@ SString *join(const SStringArray *strs, const char *separator) {
 
     return joined;
 }
+
+// Returns the number of times a specified value occurs in a string
+// Returns -1 if the value doesn't exist
+size_t count(SString *str, const char *value) {
+    if (str->len < strlen(value))
+        return -1;
+
+    // The value is equals to the string
+    if (str->len == strlen(value)) {
+        if (strcmp(SStringToCString(str), value) == 0)
+            return 1;
+        return -1;
+    }
+    
+    int total = 0;
+    char *window = str->string;
+    for (int i = 0; i <= (str->len - strlen(value)); i++) {
+        for (int j = 0; j < 3; j++) {
+            if (window[i + j] != value[j])
+                break;
+
+            if (j == 2) total += 1;
+        }
+    }
+    
+	return total;
+}			
+
+// // Searches the string for a specified value and returns the position of where it was found
+// size_t index(SString *str) {
+// 	return NULL;
+// }			
+
+// // Returns a string where a specified value is replaced with a specified value
+// SString *replace(SString *str) {
+// 	return NULL;
+// }		
+
+// // Fills the string with a specified number of the specified value at the start
+// SString *left_pad(SString *str) {
+// 	return NULL;
+// } 		
+
+// // Fills the string with a specified number of the specified value at the end     
+// SString *right_pad(SString *str) {
+// 	return NULL;
+// }		

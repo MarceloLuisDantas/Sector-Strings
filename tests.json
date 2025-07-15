@@ -36,6 +36,10 @@
         "test_join": [
             "src/sstrings.c",
             "src/tests/join.c"
+        ],
+        "test_count": [
+            "src/sstrings.c",
+            "src/tests/count.c"
         ]
     },
     "test_flags": [

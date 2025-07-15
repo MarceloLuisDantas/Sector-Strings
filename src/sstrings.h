@@ -23,7 +23,7 @@ SString *NewSString(size_t size);
 // MAY RETURN NULL
 SString *CStringToSSTring(const char* string);
 
-// Convertes a SString to a CString (list of charhs ended with \0)
+// Converts a SString to a CString (list of charhs ended with \0)
 // MAY RETURN NULL
 char *SStringToCString(const SString* str);
 
@@ -69,5 +69,9 @@ SStringArray *split(const SString *str, const char separator);
 //     strs->len <= 0
 //     malloc returns null
 SString *join(const SStringArray *strs, const char *separator);
+
+// Returns the number of times a specified value occurs in a string
+// Returns -1 if the value doesn't exist
+size_t count(SString *str, const char *value);
 
 #endif
