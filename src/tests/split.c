@@ -40,7 +40,7 @@ int main() {
         printf("Not Ok - len should be 1, but got '%ld\n", array_2->len);
         return 0;
     } else {
-        printf("OK len equals 3\n");
+        printf("OK len equals 1\n");
     }
 
     if (strcmp(SStringToCString(array_2->strings[0]), "foobarbaz") != 0) {

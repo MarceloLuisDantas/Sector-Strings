@@ -64,4 +64,10 @@ SString *concat(const SString *str1, const SString *str2, const char *separator)
 //      slice returns null 
 SStringArray *split(const SString *str, const char separator);
 
+// Join all SStrings in a SStringsArray, separed buy the separator.
+// MAY RETURN NULL IF
+//     strs->len <= 0
+//     malloc returns null
+SString *join(const SStringArray *strs, const char *separator);
+
 #endif

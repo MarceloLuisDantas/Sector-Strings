@@ -32,6 +32,10 @@
         "test_split": [
             "src/sstrings.c",
             "src/tests/split.c"
+        ],
+        "test_join": [
+            "src/sstrings.c",
+            "src/tests/join.c"
         ]
     },
     "test_flags": [

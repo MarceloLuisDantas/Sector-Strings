@@ -1,6 +1,6 @@
 {
     "src/sstrings.c": [
-        1752532017.626342,
+        1752549682.3931777,
         [
             "-Wall",
             "-g"
@@ -8,56 +8,71 @@
         "ok"
     ],
     "src/tests/new_sstring.c": [
-        1751593111.3549933,
+        1752549554.1542082,
         [
-            "-Wall"
+            "-Wall",
+            "-g"
         ],
         "ok"
     ],
     "src/tests/trim_left.c": [
         1751595573.4643846,
         [
-            "-Wall"
+            "-Wall",
+            "-g"
         ],
         "ok"
     ],
     "src/tests/trim_right.c": [
         1751595659.6339633,
         [
-            "-Wall"
+            "-Wall",
+            "-g"
         ],
         "ok"
     ],
     "src/tests/trim.c": [
         1751595567.6852787,
         [
-            "-Wall"
+            "-Wall",
+            "-g"
         ],
         "ok"
     ],
     "src/tests/sstring_to_cstring.c": [
         1752291721.6089864,
         [
-            "-Wall"
+            "-Wall",
+            "-g"
         ],
         "ok"
     ],
     "src/tests/concat.c": [
         1752297117.876757,
         [
-            "-Wall"
+            "-Wall",
+            "-g"
         ],
         "ok"
     ],
     "src/tests/slice.c": [
         1752378318.270213,
         [
-            "-Wall"
+            "-Wall",
+            "-g"
         ],
         "ok"
     ],
     "src/tests/split.c": [
-        1752531594.0960972,
+        1752547991.2024605,
+        [
+            "-Wall",
+            "-g"
+        ],
+        "ok"
+    ],
+    "src/tests/join.c": [
+        1752549710.3406072,
         [
             "-Wall",
             "-g"

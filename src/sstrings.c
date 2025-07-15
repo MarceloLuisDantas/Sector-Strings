@@ -251,7 +251,14 @@ SString *slice(const SString *str, size_t start, size_t end) {
 //      NewSStringArray returns null (malloc = null)
 //      slice returns null 
 SStringArray *split(const SString *str, const char separator) {
-    if (str->len <= 0) return NULL;
+    if (str->len < 0) return NULL;
+
+    // Empty string
+    if (str->len == 0) {
+        SStringArray *array = NewSStringArray(1);
+        push_sstring(array, CStringToSSTring(""));
+        return array;
+    }
 
     int total_split_points = 0;
     for (size_t i = 0; i < str->len; i++)
@@ -283,7 +290,10 @@ SStringArray *split(const SString *str, const char separator) {
     return array;
 }
 
-
+// Join all SStrings in a SStringsArray, separed buy the separator.
+// MAY RETURN NULL IF
+//     strs->len <= 0
+//     malloc returns null
 SString *join(const SStringArray *strs, const char *separator) {
     if (strs->len <= 0) return NULL;
     
