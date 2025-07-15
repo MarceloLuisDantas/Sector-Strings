@@ -44,6 +44,10 @@
         "test_index": [
             "src/sstrings.c",
             "src/tests/index.c"
+        ],
+        "test_replace": [
+            "src/sstrings.c",
+            "src/tests/replace.c"
         ]
     },
     "test_flags": [

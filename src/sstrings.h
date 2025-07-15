@@ -19,6 +19,14 @@ typedef struct SStringArray {
 // MAY RETURN NULL
 SString *NewSString(size_t size);
 
+// Allocs a new Array of SStrings
+// MAY RETURN NULL
+SStringArray *NewSStringArray(size_t size);
+
+// Pushs a new SString into a SStringArray
+// returns -1 if the array is full
+int push_sstring(SStringArray *self, SString *str);
+
 // Creates a SString from a C-String (list of chars ended with \0)
 // MAY RETURN NULL
 SString *CStringToSSTring(const char* string);
@@ -77,5 +85,12 @@ size_t count(SString *str, const char *value);
 // Searches the string for a specified value and returns the position of where it was found
 // Returns -1 if the value doesn't exist
 size_t indexof(SString *str, const char *value);
+
+// Returns a string where a specified value is replaced with a specified value
+// MAY RETURN NULL IF
+//      the target doens't exist in the string
+//      slice returns null
+//      malloc returns null
+SString *replace(SString *str, const char *target, const char *new);
 
 #endif

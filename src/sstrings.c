@@ -29,6 +29,8 @@
  *          SString *NewSString(size_t size)
  *          SString *CStringToSSTring(const char* str)
  *          char *SStringToCString(const SString* str)
+ *          SStringArray *NewSStringArray(size_t size)
+ *          int push_sstring(SStringArray *self, SString *str)
  *          SString *trim_left(SString *str)
  *          SString *trim_right(SString *str)
  *          SString *trim(const SString *str)
@@ -37,12 +39,18 @@
  * 
  */
 
+// char    *string;
+// size_t capacity; 
+// size_t      len;
 typedef struct SString {
     char    *string;
     size_t capacity; 
     size_t      len;
 } SString;
 
+// SString **strings;
+// size_t   capacity; 
+// size_t        len;
 typedef struct SStringArray {
     SString **strings;
     size_t   capacity; 
@@ -220,7 +228,12 @@ SString *concat(const SString *str1, const SString *str2, const char *separator)
 // The slice starts ate the start idnex, and copys until the end index (excluded)
 // str = "foo bar", start = 2, end = 5
 // result = "o b"
-// MAY RETURN NULL
+// MAY RETURN NULL IF
+//      (str->len <= 0)
+//      (start > end || start < 0)
+//      (end > str->len)
+//      (start >= str->len && start != end)
+//      malloc returns null
 SString *slice(const SString *str, size_t start, size_t end) {
     if (str->len <= 0) return NULL;
     if (start > end || start < 0) return NULL;
@@ -383,10 +396,45 @@ size_t indexof(SString *str, const char *value) {
 	return -1;
 }			
 
-// // Returns a string where a specified value is replaced with a specified value
-// SString *replace(SString *str, const char *old, const char *new) {
-// 	return NULL;
-// }		
+// Returns a string where a specified value is replaced with a specified value
+// MAY RETURN NULL IF
+//      the target doens't exist in the string
+//      slice returns null
+//      malloc returns null
+SString *replace(SString *str, const char *target, const char *new) {
+    int place = indexof(str, target);
+	if (place == -1) return NULL;
+
+    SString *frist_part = slice(str, 0, place);
+    SString *second_part = slice(str, place + strlen(target), str->len);
+    if (frist_part == NULL || second_part == NULL)
+        return NULL;
+
+    size_t new_len = (str->len - strlen(target) + strlen(new));
+    char *nstring = malloc(sizeof(char) * new_len);
+    if (nstring == NULL) return NULL;
+    
+    size_t i = 0;
+    for (size_t j = 0; j < frist_part->len; j++) {
+        nstring[i] = frist_part->string[j];
+        i += 1;
+    }
+
+    for (size_t j = 0; j < strlen(new); j++) {
+        nstring[i] = new[j];
+        i += 1;
+    }
+
+    for (size_t j = 0; j < second_part->len; j++) {
+        nstring[i] = second_part->string[j];
+        i += 1;
+    }
+
+    SString *replaced = CStringToSSTring(nstring);
+    if (replace == NULL) return NULL;
+
+    return replaced;
+}		
 
 // // Fills the string with a specified number of the specified value at the start
 // SString *left_pad(SString *str, size_t total, const char *value) {
