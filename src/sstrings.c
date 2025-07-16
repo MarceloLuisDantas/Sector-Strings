@@ -77,7 +77,7 @@ SStringArray *NewSStringArray(size_t size) {
     SStringArray *array = malloc(sizeof(SStringArray));
     if (array == NULL) return NULL;
 
-    array->strings = malloc(sizeof(SString) * size);
+    array->strings = malloc(sizeof(SString*) * size);
     if (array->strings == NULL) return NULL;
 
     array->capacity = size;
@@ -346,7 +346,7 @@ SString *join(const SStringArray *strs, const char *separator) {
 
 // Returns the number of times a specified value occurs in a string
 // Returns -1 if the value doesn't exist
-size_t count(SString *str, const char *value) {
+int count(SString *str, const char *value) {
     if (str->len < strlen(value))
         return -1;
 
@@ -372,7 +372,7 @@ size_t count(SString *str, const char *value) {
 
 // Searches the string for a specified value and returns the position of where it was found
 // Returns -1 if the value doesn't exist
-size_t indexof(SString *str, const char *value) {
+int indexof(SString *str, const char *value) {
 	if (str->len < strlen(value))
         return -1;
 
