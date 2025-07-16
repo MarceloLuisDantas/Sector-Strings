@@ -59,7 +59,7 @@ void FreeSString(SString *str);
 ```
 
 ```c
-// Frees the SString
+// Frees the SStringArray
 void FreeSStringArray(SStringArray *array);
 ```
 
