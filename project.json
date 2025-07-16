@@ -2,6 +2,7 @@
     "project": "SectorStrings",
     "type": "lib",
     "sources": [
+        "src/sstrings.c"
     ],
     "comp_flags": [
         "-Wall"
