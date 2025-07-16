@@ -15,6 +15,12 @@ typedef struct SStringArray {
     size_t        len;
 } SStringArray;
 
+// Frees the SString
+void freeSString(SString *str);
+
+// Frees the SString
+void freeSStringArray(SStringArray *array);
+
 // Allocs a new SString with the needed size
 // MAY RETURN NULL
 SString *NewSString(size_t size);

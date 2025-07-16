@@ -71,6 +71,13 @@ SString *NewSString(size_t size) {
     return ns;
 }
 
+// Frees the SString
+void freeSString(SString *str) {
+    if (str == NULL) return;
+    free(str->string);
+    free(str);
+}
+
 // Allocs a new Array of SStrings
 // MAY RETURN NULL
 SStringArray *NewSStringArray(size_t size) {
@@ -83,6 +90,14 @@ SStringArray *NewSStringArray(size_t size) {
     array->capacity = size;
     array->len = 0;
     return array;
+}
+
+// Frees the SString
+void freeSStringArray(SStringArray *array) {
+    if (array == NULL) return;
+    for (size_t i = 0; i < array->len; i++) 
+        free(array->strings[i]);
+    free(array);
 }
 
 // Pushs a new SString into a SStringArray
@@ -105,6 +120,7 @@ SString *CStringToSSTring(const char* str) {
 
     memcpy(ns->string, str, len);
     ns->len = len;
+    
     return ns;
 }
 
@@ -352,8 +368,13 @@ int count(SString *str, const char *value) {
 
     // The value is equals to the string
     if (str->len == strlen(value)) {
-        if (strcmp(SStringToCString(str), value) == 0)
+        char *temp = SStringToCString(str);
+        if (strcmp(temp, value) == 0) {
+            free(temp);
             return 1;
+        }
+
+        free(temp);
         return -1;
     }
     
@@ -378,8 +399,13 @@ int indexof(SString *str, const char *value) {
 
     // The value is equals to the string
     if (str->len == strlen(value)) {
-        if (strcmp(SStringToCString(str), value) == 0)
+        char *temp = SStringToCString(str);
+        if (strcmp(temp, value) == 0) {
+            free(temp);
             return 1;
+        }
+
+        free(temp);
         return -1;
     }
     
@@ -419,6 +445,7 @@ SString *replace(SString *str, const char *target, const char *new) {
         nstring[i] = frist_part->string[j];
         i += 1;
     }
+    free(frist_part);
 
     for (size_t j = 0; j < strlen(new); j++) {
         nstring[i] = new[j];
@@ -429,9 +456,13 @@ SString *replace(SString *str, const char *target, const char *new) {
         nstring[i] = second_part->string[j];
         i += 1;
     }
+    free(second_part);
+
 
     SString *replaced = CStringToSSTring(nstring);
-    if (replace == NULL) return NULL;
+    free(nstring);
+    if (replace == NULL) 
+        return NULL;
 
     return replaced;
 }		
@@ -465,7 +496,9 @@ SString *left_pad(SString *str, size_t total, const char *value) {
 
     nstr[count] = '\0';
     SString *padstr = CStringToSSTring(nstr);
-    if (padstr == NULL) return NULL;
+    free(nstr);
+    if (padstr == NULL) 
+        return NULL;
 
 	return padstr;
 } 		
@@ -499,7 +532,9 @@ SString *right_pad(SString *str, size_t total, const char *value) {
         
     nstr[count] = '\0';
     SString *padstr = CStringToSSTring(nstr);
-    if (padstr == NULL) return NULL;
+    free(nstr);
+    if (padstr == NULL) 
+        return NULL;
 
 	return padstr;
 }		

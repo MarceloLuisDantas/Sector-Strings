@@ -54,6 +54,16 @@ SStringArray *NewSStringArray(size_t size);
 ```
 
 ```c
+// Frees the SString
+void FreeSString(SString *str);
+```
+
+```c
+// Frees the SString
+void FreeSStringArray(SStringArray *array);
+```
+
+```c
 // Pushs a new SString into a SStringArray
 // returns -1 if the array is full
 int push_sstring(SStringArray *self, SString *str);
