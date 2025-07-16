@@ -48,6 +48,14 @@
         "test_replace": [
             "src/sstrings.c",
             "src/tests/replace.c"
+        ],
+        "test_lpad": [
+            "src/sstrings.c",
+            "src/tests/lpad.c"
+        ],
+        "test_rpad": [
+            "src/sstrings.c",
+            "src/tests/rpad.c"
         ]
     },
     "test_flags": [

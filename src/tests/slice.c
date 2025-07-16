@@ -11,7 +11,7 @@ int main() {
     } else {
         printf("Ok - start > end\n");
     }
-
+    
     SString *sslice = slice(str, 2, 5);
     if (strcmp(sslice->string, "o b") != 0) {
         printf("Not Ok - should be \"o b\", but gets \"%s\"\n", sslice->string);

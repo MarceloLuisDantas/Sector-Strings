@@ -93,4 +93,14 @@ size_t indexof(SString *str, const char *value);
 //      malloc returns null
 SString *replace(SString *str, const char *target, const char *new);
 
+// Fills the string with a specified number of the specified value at the start
+// MAY RETUR NULL IF
+//      malloc returns null
+SString *left_pad(SString *str, size_t total, const char *value);
+
+// Fills the string with a specified number of the specified value at the end     
+// MAY RETUR NULL IF
+//      malloc returns null
+SString *right_pad(SString *str, size_t total, const char *value);
+
 #endif

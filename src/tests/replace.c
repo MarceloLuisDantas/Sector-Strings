@@ -83,7 +83,7 @@ int main() {
         return 0;
     }
     printf("Len Ok - 12\n");
-
+    
     if (strcmp(SStringToCString(rep6), "Dromedarxiox") != 0) {
         printf("Not Ok - Should be \"Dromedarxiox\", but got \"%s\"\n", SStringToCString(rep6));
         return 0;

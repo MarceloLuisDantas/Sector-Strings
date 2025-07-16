@@ -436,12 +436,70 @@ SString *replace(SString *str, const char *target, const char *new) {
     return replaced;
 }		
 
-// // Fills the string with a specified number of the specified value at the start
-// SString *left_pad(SString *str, size_t total, const char *value) {
-// 	return NULL;
-// } 		
+// Fills the string with a specified number of the specified value at the start
+// MAY RETUR NULL IF
+//      malloc returns null
+SString *left_pad(SString *str, size_t total, const char *value) {
+    if (total == 0) {
+        char *temp = SStringToCString(str);
+        if (temp == NULL) return NULL;
 
-// // Fills the string with a specified number of the specified value at the end     
-// SString *right_pad(SString *str, size_t total, const char *value) {
-// 	return NULL;
-// }		
+        SString *s = CStringToSSTring(*temp);
+        if (s == NULL) return NULL;
+
+        free(temp);
+        return s;
+    }
+
+    size_t new_len = str->len + (total * strlen(value) + 1); // +1 to '\0'
+    char *nstr = malloc(sizeof(char) * new_len);
+    if (nstr == NULL) return NULL;
+
+    size_t count = 0;
+    for (size_t i = 0; i < total; i++)
+        for (size_t j = 0; j < strlen(value); j++)
+            nstr[count++] = value[j];            
+        
+    for (size_t i = 0; i < str->len; i++)
+        nstr[count++] = str->string[i];
+
+    nstr[count] = '\0';
+    SString *padstr = CStringToSSTring(nstr);
+    if (padstr == NULL) return NULL;
+
+	return padstr;
+} 		
+
+// Fills the string with a specified number of the specified value at the end     
+// MAY RETUR NULL IF
+//      malloc returns null
+SString *right_pad(SString *str, size_t total, const char *value) {
+    if (total == 0) {
+        char *temp = SStringToCString(str);
+        if (temp == NULL) return NULL;
+
+        SString *s = CStringToSSTring(*temp);
+        if (s == NULL) return NULL;
+
+        free(temp);
+        return s;
+    }
+
+    size_t new_len = str->len + (total * strlen(value) + 1); // +1 to '\0'
+    char *nstr = malloc(sizeof(char) * new_len);
+    if (nstr == NULL) return NULL;
+
+    size_t count = 0;
+    for (size_t i = 0; i < str->len; i++)
+        nstr[count++] = str->string[i];
+        
+    for (size_t i = 0; i < total; i++)
+        for (size_t j = 0; j < strlen(value); j++)
+            nstr[count++] = value[j];            
+        
+    nstr[count] = '\0';
+    SString *padstr = CStringToSSTring(nstr);
+    if (padstr == NULL) return NULL;
+
+	return padstr;
+}		
