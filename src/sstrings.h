@@ -31,7 +31,7 @@
 
     // Pushs a new SString into a SStringArray
     // returns -1 if the array is full
-    int push_sstring(SStringArray *self, SString *str);
+    int push_sstring(SStringArray *self, const SString *str);
 
     // Creates a SString from a C-String (list of chars ended with \0)
     // MAY RETURN NULL

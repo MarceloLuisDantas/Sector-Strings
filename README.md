@@ -2,27 +2,8 @@
 ### Based on the Python string functions
 
 **WARNING:** This is a library created with my needs in mind, to be used in the Sector Seven Project.
-I don't recommend using this in production or similar scenarios, but, feel free to use to small pet projects. If you need a feature that isn't yet implemented, you can request it by opening an issue.
+I don't recommend using this in production or similar scenarios, but, feel free to use to small pet projects. If you need a feature that isn't yet implemented, you can request it by opening an issue. You will need [Sector Seven](https://github.com/MarceloLuisDantas/Sector-Seven) to build the project, or you can build manually.
 
-## Build
-This lib uses **[Sector Seven C Project Builder and Tester](https://github.com/MarceloLuisDantas/Sector-Seven)**. After you install Sector Seven in your machine, clone this rep, and run:
-```
-$ ~/Sector_Strings > sector --build
-╠ Compiling: sstrings.c
-╔ Archiving Lib: libSectorStrings.a
-╚ Project Archived Successfully
-
-$ ~/Sector_Strings >
-```
-The achieve will be in `builds/libSectorStrings.a`. You can compile to a Shared Object if you want, by running: 
-```
-$ ~/Sector_Strings > sector --build --shared
-╠ Compiling: sstrings.c
-╔ Compiling Lib: libSectorStrings.a
-╚ Project Compiled Successfully
-
-$ ~/Sector_Strings >
-```
 ## Structs
 ```c
 typedef struct SString {
@@ -66,7 +47,7 @@ void FreeSStringArray(SStringArray *array);
 ```c
 // Pushs a new SString into a SStringArray
 // returns -1 if the array is full
-int push_sstring(SStringArray *self, SString *str);
+int push_sstring(SStringArray *self, const SString *str);
 ```
 
 ```c

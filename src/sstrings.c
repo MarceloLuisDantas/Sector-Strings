@@ -30,7 +30,7 @@
  *          SString *CStringToSSTring(const char* str)
  *          char *SStringToCString(const SString* str)
  *          SStringArray *NewSStringArray(size_t size)
- *          int push_sstring(SStringArray *self, SString *str)
+ *          int push_sstring(SStringArray *self, const SString *str)
  *          SString *trim_left(SString *str)
  *          SString *trim_right(SString *str)
  *          SString *trim(const SString *str)
