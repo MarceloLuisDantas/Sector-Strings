@@ -1,64 +1,10 @@
 {
-    "project": "Sector Strings",
-    "tests": {
-        "test_new_sstring": [
-            "src/sstrings.c",
-            "src/tests/new_sstring.c"
-        ],
-        "test_trim_left": [
-            "src/sstrings.c",
-            "src/tests/trim_left.c"
-        ],
-        "test_trim_right": [
-            "src/sstrings.c",
-            "src/tests/trim_right.c"
-        ],
-        "test_trim": [
-            "src/sstrings.c",
-            "src/tests/trim.c"
-        ],
-        "test_sstring_to_cstring": [
-            "src/sstrings.c",
-            "src/tests/sstring_to_cstring.c"
-        ],
-        "test_concat": [
-            "src/sstrings.c",
-            "src/tests/concat.c"
-        ],
-        "test_slice": [
-            "src/sstrings.c",
-            "src/tests/slice.c"
-        ],
-        "test_split": [
-            "src/sstrings.c",
-            "src/tests/split.c"
-        ],
-        "test_join": [
-            "src/sstrings.c",
-            "src/tests/join.c"
-        ],
-        "test_count": [
-            "src/sstrings.c",
-            "src/tests/count.c"
-        ],
-        "test_index": [
-            "src/sstrings.c",
-            "src/tests/index.c"
-        ],
-        "test_replace": [
-            "src/sstrings.c",
-            "src/tests/replace.c"
-        ],
-        "test_lpad": [
-            "src/sstrings.c",
-            "src/tests/lpad.c"
-        ],
-        "test_rpad": [
-            "src/sstrings.c",
-            "src/tests/rpad.c"
-        ]
+    "suites": {
+        "tests": "src/tests/suite_tests.json"
     },
-    "test_flags": [
-        "-Wall", "-g"
-    ]
+    "compilation_flags": [
+        "-g", "-Wall", "-Werror"
+    ],
+    "valgrind_flags": [],
+    "gdb_flags": []
 }

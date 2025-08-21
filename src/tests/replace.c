@@ -9,7 +9,7 @@ int main() {
     // ========================================================================================
     SString *rep1 = replace(str1, "eda", "x");
     if (rep1->len != 8) {
-        printf("Not Ok - Len should be 8, but got %d\n", rep1->len);
+        printf("Not Ok - Len should be 8, but got %ld\n", rep1->len);
         return 0;
     }
     printf("Len Ok - 8\n");
@@ -23,7 +23,7 @@ int main() {
     // ========================================================================================
     SString *rep2 = replace(str1, "eda", "xedax");
     if (rep2->len != 12) {
-        printf("Not Ok - Len should be 12, but got %d\n", rep2->len);
+        printf("Not Ok - Len should be 12, but got %ld\n", rep2->len);
         return 0;
     }
     printf("Len Ok - 12\n");
@@ -37,7 +37,7 @@ int main() {
     // ========================================================================================
     SString *rep3 = replace(str1, "Dro", "x");
     if (rep3->len != 8) {
-        printf("Not Ok - Len should be 8, but got %d\n", rep3->len);
+        printf("Not Ok - Len should be 8, but got %ld\n", rep3->len);
         return 0;
     }
     printf("Len Ok - 8\n");
@@ -51,7 +51,7 @@ int main() {
     // ========================================================================================
     SString *rep4 = replace(str1, "Dro", "xDrox");
     if (rep4->len != 12) {
-        printf("Not Ok - Len should be 12, but got %d\n", rep4->len);
+        printf("Not Ok - Len should be 12, but got %ld\n", rep4->len);
         return 0;
     }
     printf("Len Ok - 12\n");
@@ -65,7 +65,7 @@ int main() {
     // ========================================================================================
     SString *rep5 = replace(str1, "io", "x");
     if (rep5->len != 9) {
-        printf("Not Ok - Len should be 9, but got %d\n", rep5->len);
+        printf("Not Ok - Len should be 9, but got %ld\n", rep5->len);
         return 0;
     }
     printf("Len Ok - 9\n");
@@ -79,7 +79,7 @@ int main() {
     // ========================================================================================
     SString *rep6 = replace(str1, "io", "xiox");
     if (rep6->len != 12) {
-        printf("Not Ok - Len should be 12, but got %d\n", rep6->len);
+        printf("Not Ok - Len should be 12, but got %ld\n", rep6->len);
         return 0;
     }
     printf("Len Ok - 12\n");
@@ -93,7 +93,7 @@ int main() {
     // ========================================================================================
     SString *rep7 = replace(str1, "io", "");
     if (rep7->len != 8) {
-        printf("Not Ok - Len should be 8, but got %d\n", rep7->len);
+        printf("Not Ok - Len should be 8, but got %ld\n", rep7->len);
         return 0;
     }
     printf("Len Ok - 8\n");
@@ -107,7 +107,7 @@ int main() {
     // ========================================================================================
     SString *rep8 = replace(str1, "D", "");
     if (rep8->len != 9) {
-        printf("Not Ok - Len should be 9, but got %d\n", rep8->len);
+        printf("Not Ok - Len should be 9, but got %ld\n", rep8->len);
         return 0;
     }
     printf("Len Ok - 9\n");

@@ -9,7 +9,7 @@ int main() {
     
     SString *str12concat = concat(str1, str2, " ");
     if (str12concat->len != 7) {
-        printf("len is wrong, len = %d\n", str12concat->len);
+        printf("len is wrong, len = %ld\n", str12concat->len);
         return 0;
     } else {
         printf("len is ok\n");

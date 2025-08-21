@@ -7,7 +7,7 @@ int main() {
     SStringArray *array = split(CStringToSSTring("foo bar baz"), ' ');
     SString *joined_1 = join(array, " ");
     if (joined_1->len != 11) {
-        printf("Not Ok - len should be 11, but got %d\n", joined_1->len);
+        printf("Not Ok - len should be 11, but got %ld\n", joined_1->len);
         return 0;
     }
     printf("Len OK\n");
@@ -20,7 +20,7 @@ int main() {
 
     SString *joined_2 = join(array, "--");
     if (joined_2->len != 13) {
-        printf("Not Ok - len should be 13, but got %d\n", joined_2->len);
+        printf("Not Ok - len should be 13, but got %ld\n", joined_2->len);
         return 0;
     }
     printf("Len OK\n");
@@ -34,7 +34,7 @@ int main() {
     SStringArray *array2 = split(CStringToSSTring("aaaaaaaaaa"), 'a');
     SString *joined_3 = join(array2, " ");
     if (joined_3->len != 10) {
-        printf("Not Ok - len should be 10, but got %d\n", joined_3->len);
+        printf("Not Ok - len should be 10, but got %ld\n", joined_3->len);
         return 0;
     }
     printf("Len OK\n");
@@ -48,7 +48,7 @@ int main() {
     SStringArray *array3 = split(CStringToSSTring("dromedario"), 'z');
     SString *joined_4 = join(array3, " ");
     if (joined_4->len != 10) {
-        printf("Not Ok - len should be 10, but got %d\n", joined_4->len);
+        printf("Not Ok - len should be 10, but got %ld\n", joined_4->len);
         return 0;
     }
     printf("Len OK\n");
@@ -62,7 +62,7 @@ int main() {
     SStringArray *array4 = split(CStringToSSTring(""), 'z');
     SString *joined_5 = join(array4, " ");
     if (joined_5->len != 0) {
-        printf("Not Ok - len should be 0, but got %d\n", joined_5->len);
+        printf("Not Ok - len should be 0, but got %ld\n", joined_5->len);
         return 0;
     }
     printf("Len OK\n");

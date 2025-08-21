@@ -6,7 +6,7 @@
 int main() {
     SString *ns = NewSString(100);
     if (ns->capacity != 100) {
-        printf("len should be 100, but is %i\n", ns->len);
+        printf("len should be 100, but is %li\n", ns->len);
         return 0;
     }
 

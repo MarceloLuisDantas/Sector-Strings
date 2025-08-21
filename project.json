@@ -1,13 +1,9 @@
 {
-    "project": "SectorStrings",
-    "type": "lib",
-    "sources": [
-        "src/sstrings.c"
-    ],
-    "comp_flags": [
-        "-Wall"
-    ],
-    "ar_flags": [
-        "rsc"
+    "name": "SStrings",
+    "type": "bin",
+    "compiler": "gcc",
+    "sources": ["src/sstrings.c"],
+    "compilations_flags": [
+        "-Wall", "-Werror"
     ]
 }

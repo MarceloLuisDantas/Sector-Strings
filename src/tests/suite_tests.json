@@ -1,0 +1,60 @@
+{
+    "tests": {
+        "test_new_sstring": [
+            "../sstrings.c",
+            "new_sstring.c"
+        ],
+        "test_sstring_to_cstring": [
+            "../sstrings.c",
+            "sstring_to_cstring.c"
+        ],
+        "test_join": [
+            "../sstrings.c",
+            "join.c"
+        ],
+        "test_concat": [
+            "../sstrings.c",
+            "concat.c"
+        ],
+        "test_replace": [
+            "../sstrings.c",
+            "replace.c"
+        ],
+        "test_count": [
+            "../sstrings.c",
+            "count.c"
+        ],
+        "test_index": [
+            "../sstrings.c",
+            "index.c"
+        ],
+        "test_left_pad": [
+            "../sstrings.c",
+            "lpad.c"
+        ],
+        "test_right_pad": [
+            "../sstrings.c",
+            "rpad.c"
+        ],
+        "test_trim_left": [
+            "../sstrings.c",
+            "trim_left.c"
+        ],
+        "test_trim_right": [
+            "../sstrings.c",
+            "trim_right.c"
+        ],
+        "test_trim": [
+            "../sstrings.c",
+            "trim.c"
+        ],
+        "test_slice": [
+            "../sstrings.c",
+            "slice.c"
+        ],
+        "test_split": [
+            "../sstrings.c",
+            "split.c"
+        ]
+    }
+}

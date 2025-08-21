@@ -1,0 +1,145 @@
+{
+    "src/sstrings.c": [
+        1753038441.1530688,
+        [
+            "-Wall",
+            "-Werror"
+        ],
+        "err"
+    ],
+    "src/tests/../sstrings.c": [
+        1755747234.5783713,
+        [
+            "-g",
+            "-Wall",
+            "-Werror"
+        ],
+        "ok"
+    ],
+    "src/tests/new_sstring.c": [
+        1755747275.258156,
+        [
+            "-g",
+            "-Wall",
+            "-Werror"
+        ],
+        "ok"
+    ],
+    "src/tests/count.c": [
+        1752642063.9379916,
+        [
+            "-g",
+            "-Wall",
+            "-Werror"
+        ],
+        "ok"
+    ],
+    "src/tests/index.c": [
+        1752642079.3762639,
+        [
+            "-g",
+            "-Wall",
+            "-Werror"
+        ],
+        "ok"
+    ],
+    "src/tests/trim.c": [
+        1751595567.6852787,
+        [
+            "-g",
+            "-Wall",
+            "-Werror"
+        ],
+        "ok"
+    ],
+    "src/tests/slice.c": [
+        1752635891.703025,
+        [
+            "-g",
+            "-Wall",
+            "-Werror"
+        ],
+        "ok"
+    ],
+    "src/tests/split.c": [
+        1752549214.9050026,
+        [
+            "-g",
+            "-Wall",
+            "-Werror"
+        ],
+        "ok"
+    ],
+    "src/tests/sstring_to_cstring.c": [
+        1755747342.8439498,
+        [
+            "-g",
+            "-Wall",
+            "-Werror"
+        ],
+        "ok"
+    ],
+    "src/tests/join.c": [
+        1755747433.891934,
+        [
+            "-g",
+            "-Wall",
+            "-Werror"
+        ],
+        "ok"
+    ],
+    "src/tests/trim_left.c": [
+        1751595573.4643846,
+        [
+            "-g",
+            "-Wall",
+            "-Werror"
+        ],
+        "ok"
+    ],
+    "src/tests/trim_right.c": [
+        1751595659.6339633,
+        [
+            "-g",
+            "-Wall",
+            "-Werror"
+        ],
+        "ok"
+    ],
+    "src/tests/rpad.c": [
+        1755747521.5981607,
+        [
+            "-g",
+            "-Wall",
+            "-Werror"
+        ],
+        "ok"
+    ],
+    "src/tests/concat.c": [
+        1755747545.606259,
+        [
+            "-g",
+            "-Wall",
+            "-Werror"
+        ],
+        "ok"
+    ],
+    "src/tests/lpad.c": [
+        1755747571.038379,
+        [
+            "-g",
+            "-Wall",
+            "-Werror"
+        ],
+        "ok"
+    ],
+    "src/tests/replace.c": [
+        1755747588.6214707,
+        [
+            "-g",
+            "-Wall",
+            "-Werror"
+        ],
+        "ok"
+    ]
+}

@@ -8,10 +8,10 @@ int main() {
     char *cstr = SStringToCString(sstr);
     
     if (strlen(cstr) != 8) {
-        printf("Not Ok CStr len, %i\n", strlen(cstr));
+        printf("Not Ok CStr len, %li\n", strlen(cstr));
         return 0;
     }
-    printf("Ok \"%s\" len, %i\n", cstr, strlen(cstr));
+    printf("Ok \"%s\" len, %li\n", cstr, strlen(cstr));
 
     if (strcmp(cstr, "foo bars") != 0) {
         printf("CStr should be \"foo bars\", but is %s\n", cstr);
